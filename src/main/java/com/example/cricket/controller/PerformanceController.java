@@ -4,6 +4,8 @@ import com.example.cricket.entity.Performance;
 import com.example.cricket.service.PerformanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
 
 import java.util.List;
 
@@ -22,6 +24,31 @@ public class PerformanceController {
     @GetMapping("/{playerId}")
     public Performance getPerformanceByPlayerId(@PathVariable Long playerId) {
         return performanceService.getPerformanceByPlayerId(playerId);
+    }
+
+    // @GetMapping("/player")
+    // public ResponseEntity<List<Performance>> getPerformanceByPlayerName(
+    //         @RequestParam String fName,
+    //         @RequestParam String lName) {
+
+    //     List<Performance> records = performanceService.getPerformanceByPlayerName(fName, lName);
+    //     if (records.isEmpty()) {
+    //         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    //     } else {
+    //         return ResponseEntity.ok(records);
+    //     }
+    // }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Performance>> getByPlayerName(
+        @RequestParam String fName,
+        @RequestParam String lName
+    ) {
+        List<Performance> performances = performanceService.getPerformancesByPlayerName(fName, lName);
+        if (performances.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(performances);
     }
 
     @PostMapping

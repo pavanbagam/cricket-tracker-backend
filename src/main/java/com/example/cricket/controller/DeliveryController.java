@@ -44,6 +44,9 @@ public class DeliveryController {
     //Done
     @PostMapping
     public Delivery saveDelivery(@RequestBody Delivery delivery) {
+        System.out.println("Incoming Delivery JSON: " + delivery);
+        System.out.println("Inning: " + delivery.getInning());
+        System.out.println("Bowler: " + delivery.getBowler());
         return deliveryService.saveDelivery(delivery);
     }
 

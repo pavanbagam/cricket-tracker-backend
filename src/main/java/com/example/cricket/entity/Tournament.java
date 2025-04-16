@@ -2,6 +2,7 @@ package com.example.cricket.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import java.util.List;
 
 @Entity
 @Table(name = "tournament")
@@ -18,6 +19,7 @@ public class Tournament {
     private int year;
     private String format;
     private String hostCountry;
+    
 
     public String getFormat() {
         return format;

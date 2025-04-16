@@ -92,7 +92,14 @@ public class DeliveryService {
     }
 
     private void updateInning(Delivery delivery) {
+
+        if (delivery.getInning() == null || delivery.getInning().getInningId() == null) {
+            throw new RuntimeException("Inning must be provided with a valid inningId.");
+        }
+
+
         Inning inning = delivery.getInning();
+        
         if(delivery.isWicket())
         {
             inning.setWickets(inning.getWickets() + 1);
@@ -127,6 +134,20 @@ public class DeliveryService {
         Player batsman = delivery.getBatsman();
         Performance performance = performanceRepository.findByPlayerPlayerId(batsman.getPlayerId());
 
+        if (performance == null) {
+            performance = new Performance();
+            performance.setPlayer(batsman);
+            performance.setRunsScored(0);
+            performance.setDeliveriesFaced(0);
+            performance.setFours(0);
+            performance.setSixes(0);
+            performance.setInningsPlayed(1); // assume one inning started
+            performance.setNotOuts(0);
+            performance.setRunsGiven(0);
+            performance.setDeliveriesBowled(0);
+            performance.setWicketsTaken(0);
+        }
+
         performance.setRunsScored(performance.getRunsScored() + delivery.getRunsScored());
         performance.setDeliveriesFaced(performance.getDeliveriesFaced() + 1);
 
@@ -149,6 +170,14 @@ public class DeliveryService {
     private void updateBowlerPerformance(Delivery delivery) {
         Player bowler = delivery.getBowler();
         Performance performance = performanceRepository.findByPlayerPlayerId(bowler.getPlayerId());
+
+        if (performance == null) {
+            performance = new Performance();
+            performance.setPlayer(bowler);
+            performance.setRunsGiven(0);
+            performance.setDeliveriesBowled(0);
+            performance.setWicketsTaken(0);
+        }
 
         performance.setDeliveriesBowled(performance.getDeliveriesBowled() + 1);
         performance.setRunsGiven(performance.getRunsGiven() + delivery.getRunsScored());

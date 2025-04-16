@@ -26,6 +26,10 @@ public class PerformanceService {
         return performanceRepository.findByPlayerPlayerId(playerId);
     }
 
+    public List<Performance> getPerformancesByPlayerName(String fName, String lName) {
+        return performanceRepository.findAllByPlayerFNameAndPlayerLName(fName, lName);
+    }
+
     public Performance savePerformance(Performance performance) {
         return performanceRepository.save(performance);
     }
@@ -53,6 +57,8 @@ public class PerformanceService {
             return null;
         }
     }
+
+    
 
     public void deletePerformance(Long id) {
         performanceRepository.deleteById(id);

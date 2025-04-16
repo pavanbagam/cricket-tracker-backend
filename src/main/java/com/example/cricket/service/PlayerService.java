@@ -17,6 +17,10 @@ public class PlayerService {
         return playerRepository.findAll();
     }
 
+    public List<Player> searchPlayersByFullName(String fName, String lName) {
+        return playerRepository.findAllByFNameAndLName(fName, lName);
+    }
+
     public Player savePlayer(Player player) {
         return playerRepository.save(player);
     }

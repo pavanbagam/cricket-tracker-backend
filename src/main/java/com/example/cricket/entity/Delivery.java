@@ -14,7 +14,7 @@ public class Delivery {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long deliveryId;
 
-    @JsonIgnore
+    
     @ManyToOne
     @JoinColumn(name = "inning_id", nullable = false)
     private Inning inning;
@@ -95,22 +95,20 @@ public class Delivery {
         this.overNumber = overNumber;
     }
 
-    @JsonIgnore
+    
     @ManyToOne
     @JoinColumn(name = "bowler_id", nullable = false)
     private Player bowler;
 
-    @JsonIgnore
+    
     @ManyToOne
     @JoinColumn(name = "batsman_id", nullable = false)
     private Player batsman;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "non_striker_id")
     private Player nonStriker;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "fielder_id")
     private Player fielder;
