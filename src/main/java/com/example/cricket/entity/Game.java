@@ -21,6 +21,7 @@ public class Game {
     private String venue;
     private String type;
     private String umpire;
+    private Long tossWinnerId;
 
     @JsonIgnore
     @ManyToOne
