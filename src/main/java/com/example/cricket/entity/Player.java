@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "player")
@@ -23,9 +24,8 @@ public class Player {
     private Long lastInningId;
 
     @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "teamId", nullable = false)
-    private Team team;
+    @ManyToMany(mappedBy = "players")
+    private List<Team> teams;
 
     public String getfName() {
         return fName;
@@ -59,13 +59,13 @@ public class Player {
         this.dob = dob;
     }
 
-    public Team getTeam() {
-        return team;
-    }
+    // public Team getTeam() {
+    //     return team;
+    // }
 
-    public void setTeam(Team team) {
-        this.team = team;
-    }
+    // public void setTeam(Team team) {
+    //     this.team = team;
+    // }
 
     public Long getPlayerId() {
         return playerId;

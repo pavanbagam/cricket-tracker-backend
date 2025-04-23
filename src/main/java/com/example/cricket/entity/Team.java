@@ -4,10 +4,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+
 import java.util.List;
 
 @Entity
 @Table(name = "team")
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Team {
@@ -22,7 +25,12 @@ public class Team {
     private String captain;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "team")
+    @ManyToMany
+    @JoinTable(
+        name = "team_player",
+        joinColumns = @JoinColumn(name = "team_id"),
+        inverseJoinColumns = @JoinColumn(name = "player_id")
+    )
     private List<Player> players;
 
     public String getName() {
