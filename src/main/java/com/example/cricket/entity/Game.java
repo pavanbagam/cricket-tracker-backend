@@ -8,7 +8,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 
 @Entity
-@Table(name = "game")
+@Table(
+    name = "game",
+    uniqueConstraints = {
+        @UniqueConstraint(name = "uq_match_code", columnNames = "match_code")
+    }
+)
 @NoArgsConstructor
 @AllArgsConstructor
 public class Game {
@@ -21,6 +26,9 @@ public class Game {
     private String venue;
     private String type;
     private String umpire;
+
+    @Column(name = "match_code", nullable = false, length = 40)
+    private String matchCode; // Unique match code for the game
 
     @ManyToOne
     @JoinColumn(name = "toss_winner_id")
@@ -113,5 +121,13 @@ public class Game {
 
     public void setWinnerTeam(Team winnerTeam) {
         this.winnerTeam = winnerTeam;
+    }
+
+    public String getMatchCode() {
+        return matchCode;
+    }
+
+    public void setMatchCode(String matchCode) {
+        this.matchCode = matchCode;
     }
 }
