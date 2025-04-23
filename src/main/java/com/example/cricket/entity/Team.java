@@ -15,6 +15,7 @@ public class Team {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long teamId;
 
+    @Column(nullable = false, unique = true) // Enforce uniqueness
     private String name;
     private String country;
     private String coach;
