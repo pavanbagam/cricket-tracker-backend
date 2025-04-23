@@ -3,9 +3,16 @@ package com.example.cricket.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.NaturalId;
+
 
 @Entity
-@Table(name = "squad")
+@Table(
+    name = "squad",
+    uniqueConstraints = {
+        @UniqueConstraint(name = "uq_player_team", columnNames = {"player_id", "team_id"})
+    }
+)
 @NoArgsConstructor
 @AllArgsConstructor
 public class Squad {
@@ -25,17 +32,20 @@ public class Squad {
 
     private Long tournamentId;
 
-    public Team getTeam() {
-        return team;
-    }
+    // lets Hibernate treat (player,team) as a natural key
+    @NaturalId
+    public Team getTeam()   { return team; }
+    @NaturalId
+    public Player getPlayer(){ return player; }
+
+
+    
 
     public void setTeam(Team team) {
         this.team = team;
     }
 
-    public Player getPlayer() {
-        return player;
-    }
+    
 
     public void setPlayer(Player player) {
         this.player = player;

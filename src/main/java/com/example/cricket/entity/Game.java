@@ -21,27 +21,42 @@ public class Game {
     private String venue;
     private String type;
     private String umpire;
-    private Long tossWinnerId;
 
-    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "tournamentId", nullable = false)
-    private Tournament tournament;
+    @JoinColumn(name = "toss_winner_id")
+    private Team tossWinner;
 
-    @JsonIgnore
+    // @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "team1_id", nullable = false)
     private Team team1;
 
-    @JsonIgnore
+    // @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "team2_id", nullable = false)
     private Team team2;
 
-    @JsonIgnore
+    // @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "winner_team_id")
     private Team winnerTeam;
+    
+
+    public Long getGameId() {
+        return gameId;
+    }
+
+    public void setGameId(Long gameId) {
+        this.gameId = gameId;
+    }
+
+    public Team getTossWinner() {
+        return tossWinner;
+    }
+
+    public void setTossWinner(Team tossWinner) {
+        this.tossWinner = tossWinner;
+    }
 
     public Date getDate() {
         return date;
@@ -75,14 +90,7 @@ public class Game {
         this.umpire = umpire;
     }
 
-    public Tournament getTournament() {
-        return tournament;
-    }
-
-    public void setTournament(Tournament tournament) {
-        this.tournament = tournament;
-    }
-
+    
     public Team getTeam1() {
         return team1;
     }
