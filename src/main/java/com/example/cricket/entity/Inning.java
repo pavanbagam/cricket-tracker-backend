@@ -13,12 +13,12 @@ public class Inning {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long inningId;
 
-    @JsonIgnore
+    // @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "game_id", nullable = false)
     private Game game;
 
-    @JsonIgnore
+    // @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "team_id", nullable = false)
     private Team team;

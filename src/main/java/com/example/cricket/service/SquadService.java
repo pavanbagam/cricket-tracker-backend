@@ -9,6 +9,8 @@ import com.example.cricket.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.cricket.dto.PlayerMiniDTO;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -42,6 +44,15 @@ public class SquadService {
 
     public List<Squad> getSquadsByPlayerId(Long playerId) {
         return squadRepository.findByPlayerPlayerId(playerId);
+    }
+
+    /** Return squad size for the team (all tournaments, for now) */
+    public long squadCount(Long teamId) {
+        return squadRepository.countByTeamId(teamId);
+    }
+
+    public List<PlayerMiniDTO> squadMiniByTeam(Long teamId){
+        return squadRepository.squadMiniByTeam(teamId);    // <‑‑ projection query
     }
 
     public Squad saveSquad(Squad squad) {

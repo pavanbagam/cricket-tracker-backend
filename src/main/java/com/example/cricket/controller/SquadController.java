@@ -7,6 +7,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 
+import com.example.cricket.dto.PlayerMiniDTO;
+
+
 import java.util.List;
 
 @RestController
@@ -43,6 +46,11 @@ public class SquadController {
         return squadService.getSquadsByPlayerId(playerId);
     }
 
+    @GetMapping("/count")
+    public long squadCount(@RequestParam Long teamId) {
+        return squadService.squadCount(teamId);
+    }
+
     @PostMapping
     public Squad addSquad(@RequestBody Squad squad) {
         return squadService.saveSquad(squad);
@@ -53,4 +61,11 @@ public class SquadController {
         squadService.deleteSquad(id);
         return ResponseEntity.ok("Squad deleted successfully!");
     }
+
+    // SquadController.java  (add at bottom)
+    @GetMapping("/mini/byTeam/{teamId}")
+    public List<PlayerMiniDTO> miniSquad(@PathVariable Long teamId) {
+        return squadService.squadMiniByTeam(teamId);
+}
+
 }
