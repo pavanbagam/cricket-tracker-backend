@@ -110,7 +110,7 @@ public class DeliveryService {
             if(inning.getDeliveries() == 5)
             {
                 inning.setDeliveries(0);
-                inning.setOvers(inning.getOvers() + 1);
+                inning.setCurrOvers(inning.getCurrOvers() + 1);
             }
             else
             {

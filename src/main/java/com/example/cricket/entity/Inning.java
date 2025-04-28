@@ -26,6 +26,7 @@ public class Inning {
     private int totalRuns;
     private int wickets;
     private int overs;
+    private int currOvers;
     private int deliveries;
 
     public Game getGame() {
@@ -82,5 +83,13 @@ public class Inning {
 
     public void setDeliveries(int deliveries) {
         this.deliveries = deliveries;
+    }
+
+    public int getCurrOvers() {
+        return currOvers;
+    }
+
+    public void setCurrOvers(int currOvers) {
+        this.currOvers = currOvers;
     }
 }

@@ -26,6 +26,8 @@ public class Game {
     private String venue;
     private String type;
     private String umpire;
+    private boolean choseToBat; // e.g., "Scheduled", "In Progress", "Completed"
+    private int overs;
 
     @Column(name = "match_code", nullable = false, length = 40)
     private String matchCode; // Unique match code for the game
@@ -129,5 +131,21 @@ public class Game {
 
     public void setMatchCode(String matchCode) {
         this.matchCode = matchCode;
+    }
+
+    public boolean isChoseToBat() {
+        return choseToBat;
+    }
+
+    public void setChoseToBat(boolean choseToBat) {
+        this.choseToBat = choseToBat;
+    }
+
+    public int getOvers() {
+        return overs;
+    }
+
+    public void setOvers(int overs) {
+        this.overs = overs;
     }
 }

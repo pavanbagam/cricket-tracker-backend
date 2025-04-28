@@ -65,6 +65,7 @@ public class InningService {
             existingInning.setTotalRuns(updatedInning.getTotalRuns());
             existingInning.setWickets(updatedInning.getWickets());
             existingInning.setOvers(updatedInning.getOvers());
+            existingInning.setCurrOvers(updatedInning.getCurrOvers());
             existingInning.setDeliveries(updatedInning.getDeliveries());
             return inningRepository.save(existingInning);
         });
